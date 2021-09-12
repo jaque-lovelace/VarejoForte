@@ -1,5 +1,59 @@
 <%- include('partials/header.ejs');%>
   <%- include(navbar);%>
+
+  <div class="btn-group ml-auto p-2">
+    <a href="/" class="btn btn-teal btn-lg active" role="button" aria-pressed="true">Produto por Categoria</a>
+    <a href="/" class="btn btn-teal btn-lg disabled" role="button" aria-pressed="true">Mais Vendidos</a>
+    <a href="/" class="btn btn-teal btn-lg disabled" role="button" aria-pressed="true">Lojas Parceiras</a>
+    <a href="/page" class="btn btn-teal btn-lg active" role="button" aria-pressed="true">Sobre</a>
+  </div>
+
+  <div class="row w-100 m-0">
+    <div class="col-12 bg-teal d-sm-flex">
+      <div class="table-responsive p-2 table-to-dropdown">
+        <table class="table-sm">
+          <tbody>
+            <tr>
+              <% categories.forEach(category=> { %>
+                <td><a href="/?category=<%= category.id%>" class="btn btn-sm btn-link text-dark" style="text-decoration: none;">
+                    <%= category.name %>
+                  </a></td>
+                <% }) %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dropdown-to-table">
+        <div class="dropdown w-100 pt-2">
+        <button class="btn btn-secondary btn-sm dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categorias
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          
+          <% categories.forEach(category=> { %>
+            <a href="/?category=<%= category.id%>" class="dropdown-item text-nowrap">
+                <%= category.name %>
+              </a>
+            <% }) %>
+        </div>
+        </div>
+      </div>
+
+      <div class="btn-group ml-auto py-2 button-width">
+        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle px-4" data-toggle="dropdown" style="background: #5f0f4e;"
+          aria-haspopup="true" aria-expanded="false">
+          Ordernar por: 
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a href="/" id="prod_asc" class="dropdown-item" type="button">Preço: baixo a alto</a>
+          <a href="/" id="prod_desc" class="dropdown-item" type="button">Preço: alto a baixo</a>
+          <a href="/" id="prod_desc" class="dropdown-item" type="button">Produtos mais novos</a>
+          <a href="/" id="prod_desc" class="dropdown-item" type="button">Destaques</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
@@ -37,50 +91,6 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Próximo</span>
       </a>
-    </div>
-
-    <div class="row w-100 m-0">
-      <div class="col-12 bg-dark d-sm-flex">
-        <div class="table-responsive p-2 table-to-dropdown">
-          <table class="table-sm">
-            <tbody>
-              <tr>
-                <% categories.forEach(category=> { %>
-                  <td><a href="/?category=<%= category.id%>" class="btn btn-sm btn-secondary text-nowrap">
-                      <%= category.name %>
-                    </a></td>
-                  <% }) %>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="dropdown-to-table">
-          <div class="dropdown w-100 pt-2">
-          <button class="btn btn-secondary btn-sm dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categorias
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            
-            <% categories.forEach(category=> { %>
-              <a href="/?category=<%= category.id%>" class="dropdown-item text-nowrap">
-                  <%= category.name %>
-                </a>
-              <% }) %>
-
-          </div>
-          </div>
-        </div>
-        <div class="btn-group ml-auto py-2 button-width">
-          <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Ordernar por preço
-          </button>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a href="/" id="prod_asc" class="dropdown-item" type="button">Crescente</a>
-            <a href="/" id="prod_desc" class="dropdown-item" type="button">Decrescente</a>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="container">
